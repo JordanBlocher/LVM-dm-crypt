@@ -1,0 +1,11 @@
+NUMPTS=$(pvs --noheadings | wc -l)
+PTS=$(pvs --noheadings -o pv_name | sed 's/:.*//')
+echo "Found $NUMPTS encrypted partitions."
+for PT in $PTS
+do
+    PTNAME=${PT##*/}
+    echo "Closing $PTNAME"
+    cryptsetup close $PTNAME
+done
+
+

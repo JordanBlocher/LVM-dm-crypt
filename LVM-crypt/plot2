@@ -1,0 +1,12 @@
+set terminal post color 
+set output 'time.eps'
+unset key
+set style data histogram
+set xtics ()
+set xrange [-.3:9.5]
+set style fill solid border -1
+#set boxwidth 0.75
+set title "Synchronization Time" 
+set xlabel "Number of Partitions" 
+set ylabel "Time (s)" 
+plot 'time' using 2

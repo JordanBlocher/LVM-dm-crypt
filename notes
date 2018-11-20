@@ -1,0 +1,31 @@
+ sudo pvcreate /dev/sdc1
+ sudo vgcreate morph /dev/sdc1
+ 
+ sudo pvscan
+ sudo vgscan
+ sudo lvscan
+ 
+ sudo lvcreate -l 100%FREE -ncrypt morph
+ sudo mkfs.ext4 /dev/morph/ext4
+ sudo mkdir /mnt/morph
+ sudo mount /dev/morph/ext4 /mnt/morph
+ sudo lvremove /dev/morph/ext4
+ 
+ sudo vgchange -an morph
+ sudo vgremove morph
+
+ sudo pvdisplay
+ sudo vgdisplay
+ sudo lvdisplay
+
+
+dd if=/dev/random of=/etddc/luks-keys/home bs=1 count=256
+cryptsetup luksFormat -v -s 512 /dev/lvm/home /etc/luks-keys/home
+
+cryptsetup -d /etc/luks-keys/home open --type luks /dev/lvm/home home
+mkfs -t ext4 /dev/mapper/home
+mount /dev/mapper/home /home
+
+sudo cryptsetup open --type plain /dev/morph/left left
+--key-file /etc/dm-keys/left 
+

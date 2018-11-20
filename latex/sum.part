@@ -1,0 +1,9 @@
+PTS=$(pvs --noheadings -o pv_name | sed 's/:.*//')
+NUMPTS=$(pvs --noheadings | wc -l)
+echo "Found $NUMPTS encrypted mappings."
+for PT in $PTS
+do
+    echo $(sha512sum $PT) >> $FILE
+done
+
+

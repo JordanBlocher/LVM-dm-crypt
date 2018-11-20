@@ -1,0 +1,2 @@
+ACTION=="add", ATTR{size}=="30283008", ATTRS{serial}=="0713C31252A833F7", ENV{SYSTEMD_WANTS}="usbencrypt.service" SYMLINK+="keydev"
+	

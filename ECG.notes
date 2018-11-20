@@ -1,0 +1,77 @@
+
+wrsamp
+------
+
+setwfdb - env vars
+
+ecgpuwave
+---------
+
+-f time
+Begin at the specified time (default: the beginning of the record).
+-i input-annotator
+Read QRS locations from the specified input-annotator (and copy them to the output annotation file). Default: run the built-in QRS detector.
+-n beat-type
+Specify which beats to process (must be used together with -i): beat_type may be 0 (default: process all beats) or 1 (process only beats labelled as NORMAL ("N") by the input annotator).
+-s n
+Analyze signal n (default: signal 0).
+-t time
+Stop at the specified time (default: the end of the record).
+
+gqrs, gqpost - QRS detector and post-processor
+------------
+
+gqrs -r record [ options ... ] 
+gqpost -r record [ options ... ]
+
+-a annotator
+[gqpost only] Read annotations from the specified annotator (default: qrs).
+-c file
+Initialize parameters based on the specified (text) configuration file. See the example configuration file, gqrs.conf, for details.
+-f time
+Begin at the specified time in record (default: the beginning of record).
+-h
+Print a usage summary.
+-H
+Read the signal files in high-resolution mode (default: standard mode).
+-m threshold
+Specify the threshold (default: 1.0) for detection [qqrs] or acceptance [gqpost]. Use higher values to reduce false detections, or lower values to reduce the number of missed beats.
+-n name
+[gqrs only] Save the filtered signals in a new record with the specified record name.
+-o name
+[gqpost only] write annotations to an annotation file with the specified annotator name.
+-s signal
+[gqrs only] Specify the signal to be used for QRS detection (default: 0). Note that signals may be specified by number or name.
+-t time
+Process until the specified time in record (default: the end of the record).
+
+
+ann2rr, rr2ann - convert annotation files to interval lists and vice versa
+--------------
+
+
+-A
+Print all intervals between annotations. By default, ann2rr prints only RR intervals (those between QRS (beat) annotations). This option overrides the -c and -p options.
+-c
+Print intervals between consecutive valid annotations only. (See discussion below.)
+-f time
+Begin at the specified time. By default, ann2rr starts at the beginning of the record.
+-h
+Print a usage summary.
+-i format
+Print intervals in the specified format. By default, intervals are printed in units of sample intervals. Other formats include s (seconds), m (minutes), h (hours), and t (time interval in hh:mm:ss format). Formats s, m, and h may be followed by an integer between 0 and 15 inclusive, specifying the number of decimal places (default: 3). For example, use the option -is8 to obtain intervals in seconds with 8 decimal places.
+-p type [ type ... ]
+Print intervals ended by annotations of the specified types only. The type arguments should be annotation mnemonics (e.g., N), as normally printed by rdann(1) in the third column. More than one -p option may be used in a single command, and each -p option may have more than one type argument following it. If type begins with ‘‘-’’, however, it must immediately follow -p (standard annotation mnemonics do not begin with ‘‘-’’, but modification labels in an annotation file may define such mnemonics).
+-P type [ type ... ]
+Print intervals begun by annotations of the specified types only.
+-t time
+Stop at the specified time.
+-v format
+Print final times (the times of occurrence of the annotations that end each interval). This option accepts all of the formats defined for -i, as well as T (to print the date and time in [hh:mm:ss dd/mm/yyyy] if the starting time and date have been recorded in the header file for record). If this option is chosen, the times appear at the end of each line of output.
+-V format
+Print initial times (the times of occurrence of the annotations that begin each interval). Any of the formats usable for the -v option may be used with -V. If this option is chosen, the times appear at the beginning of each line of output.
+-w
+Print final annotations (the types (N, V, etc., as for -p above) of the annotations that end each interval), immediately following the intervals in each line of output.
+-W
+Print initial annotations (the types of the annotations that begin each interval), immediately before the interval in each line of output.
+

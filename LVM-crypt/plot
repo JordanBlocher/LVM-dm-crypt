@@ -1,0 +1,23 @@
+set terminal post color 
+set output 'count.eps'
+set key invert reverse Left outside
+set key autotitle columnheader
+set style data histogram
+set xtics ()
+set style histogram rowstacked
+set style fill solid border -1
+set boxwidth 0.75
+set xrange [-1:23]
+set title "Count of Checksums for Varying Filesizes" 
+set xlabel "Number of Files" 
+set ylabel "Number of Changed Partitions" 
+plot 'count1M.sum' using 3:xtic(1) t  '1M',\
+'count2M.sum' using 3:xtic(1) t  '2M',\
+'count2M.sum' using 3:xtic(1) t  '2M',\
+'count4M.sum' using 3:xtic(1) t  '4M',\
+'count5M.sum' using 3:xtic(1) t  '5M',\
+'count6M.sum' using 3:xtic(1) t  '6M',\
+'count10M.sum' using 3:xtic(1) t  '10M',\
+'count12M.sum' using 3:xtic(1) t  '12M',\
+'count16M.sum' using 3:xtic(1) t  '16M',\
+'count25M.sum' using 3:xtic(1) t  '25M'

@@ -1,0 +1,14 @@
+
+1. The WFDB Software Package extracts information from the header. (ecg.header)
+
+2. The beat annotation file needs to be extracted from the data. I tried a few software packages.
+Use wqrs, a reasonably fast QRS detector that generally works better than sqrs.
+Use gqrs, a very good and fast QRS detector that generally performs better than the others listed here. Like the others, gqrs is optimized for use with adult human ECGs; unlike the others, gqrs can be configured easily for analysis of infant, pediatric, and non-human ECGs.
+Use ecgpuwave, a very good QRS detector that also locates the P- and T-waves and their boundaries.
+I really want to use ecgpuwave, which is what is used in the paper, it is written in Fortran and I am having some trouble installing it, so if I am not able to succeed soon I will look into getting a box that has a compatible operating system. (32-bit)
+
+The annotation file is also in hex, and needs additional packages to analyze it. The time intervals between consecutive heart beats are customarily measured in the electrocardiogram from the beginning of a QRS complex to the beginning of the next QRS complex, so these intervals might be called QQ intervals, but they are conventionally named RR intervals. 
+
+3. Extract the RR intervals using ann2rr. Finally there is a file that has numbers I may be able to use! (ecg.rr was produced using the annotation file from the results of running gqrs on he annotation file)
+
+4. So these RR intervals are the first step, I would like to also get the P and T waves.

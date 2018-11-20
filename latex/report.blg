@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+The style file: abbrv.bst
+Database file #1: report.bib
+Warning--to sort, need author or key in imperva
+Warning--to sort, need author or key in tresorit
+Warning--empty author in imperva
+Warning--empty institution in imperva
+Warning--empty author in tresorit
+Warning--empty institution in tresorit
+You've used 3 entries,
+            2118 wiz_defined-function locations,
+            507 strings with 3834 characters,
+and the built_in function-call counts, 547 in all, are:
+= -- 53
+> -- 9
+< -- 0
++ -- 5
+- -- 2
+* -- 38
+:= -- 93
+add.period$ -- 7
+call.type$ -- 3
+change.case$ -- 12
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 26
+empty$ -- 51
+format.name$ -- 2
+if$ -- 110
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 1
+newline$ -- 16
+num.names$ -- 2
+pop$ -- 10
+preamble$ -- 1
+purify$ -- 7
+quote$ -- 0
+skip$ -- 18
+stack$ -- 0
+substring$ -- 15
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 6
+while$ -- 2
+width$ -- 4
+write$ -- 29
+(There were 6 warnings)
