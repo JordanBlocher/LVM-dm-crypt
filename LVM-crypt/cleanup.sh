@@ -3,7 +3,7 @@
 printf "Specify the partition: (i.e. sdd, sdc, ..)\n"
 read BASE
 
-umount /media/frags/Home
+umount /media/frags/crypt
 umount /dev/mapper/dm-keys
 cryptsetup close dm-keys
 parted /dev/$BASE rm 2

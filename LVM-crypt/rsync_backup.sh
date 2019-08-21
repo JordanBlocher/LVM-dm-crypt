@@ -14,7 +14,7 @@ fi
 USER=$(echo $SUDO_USER)
 BASE=$1
 
-NUMPTS=13 #$(pvs --noheadings | wc -l)
+NUMPTS=12 #$(pvs --noheadings | wc -l)
 i=1
 while [ $i -lt $(($NUMPTS)) ]
 do

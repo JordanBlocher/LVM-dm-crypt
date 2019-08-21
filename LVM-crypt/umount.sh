@@ -19,7 +19,6 @@ BASE=$1
 FILE=$2
 
 umount /mnt/crypt
-umount /media/$USER/Home
 umount /media/$USER/crypt
 umount -a
 cryptsetup close dm-keys
@@ -57,5 +56,4 @@ done
 #rm -r /mnt/storage
 rm -r /mnt/crypt/*
 rm -r /mnt/crypt
-rm -r /media/$USER/Home
 rm -r /media/$USER/crypt

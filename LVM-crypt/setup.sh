@@ -16,14 +16,14 @@ BASE=$1
 FILE=$2
 
 FREE=$(parted /dev/$BASE print free | grep 'Free Space' | tail -n1 | awk '{print $3}')
-printf "$FREE space detected, creating Home partition.\n"
+printf "$FREE space detected, creating crypt partition.\n"
 # Make home 
 START=$(parted /dev/$BASE unit MB print free | grep 'Free' | tail -n1 | awk '{print $1}')
 
 parted -a optimal /dev/$BASE mkpart primary 0% 61440MB
-mkfs.exfat -n Home /dev/$BASE"1"
-mkdir -p /media/$USER/Home
-mount /dev/$BASE"1" /media/$USER/Home
+mkfs.exfat -n crypt /dev/$BASE"1"
+mkdir -p /media/$USER/crypt
+mount /dev/$BASE"1" /media/$USER/crypt
 mkdir -p /mnt/crypt
 
 # Make key storage
@@ -59,7 +59,7 @@ mkdir -p /mnt/crypt/.dm-keys
 mkdir -p /mnt/crypt/.partmap
 
 # Create the encrypted blocks
-NUMBLOCKS=12
+NUMBLOCKS=6
 NUMVOLS=2
 MAXTABLESIZE=128
 FREE=$(parted /dev/$BASE unit MB print free | grep 'Free Space' | tail -n1 | awk '{print $3}')
@@ -113,7 +113,7 @@ echo "STORING KEY TABLE..."
 
 
 echo ${DMKEYS[@]}
-#(echo printf "%s\n" "${DMKEYS[@]}") | openssl rsautl -encrypt -inkey ~/.ssh/dm-key.pem > /mnt/crypt/.dm-keys/hash.keys
+(echo printf "%s\n" "${DMKEYS[@]}") | openssl rsautl -encrypt -inkey ~/.ssh/dm-key.pem > /mnt/crypt/.dm-keys/hash.keys
 printf "%s\n" "${DMKEYS[@]}" > /mnt/crypt/.dm-keys/hash.keys
 
 j=1
@@ -159,3 +159,4 @@ do
     j=$(($j+1))
 done
 
+echo "DONE..."

@@ -1,7 +1,0 @@
-# Put me in "/etc/systemd/system/"
-
-[Unit]
-Description=Mount Ecrypted Volumes
-
-[Service]
-ExecStart=/usr/local/bin/encrypt.sh
