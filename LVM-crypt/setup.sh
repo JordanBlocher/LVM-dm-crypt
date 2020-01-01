@@ -8,11 +8,11 @@ fi
 
 USER=$(echo $SUDO_USER)
 
-#printf "Specify the partition: (i.e. sdd, sdc, ..)\n"
-#read BASE
+printf "Specify the partition: (i.e. sdd, sdc, ..)\n"
+read BASE
 BASE=$1
-#printf "Specify the filesystem: (i.e. exfat, ext4, ..)\n"
-#read FILE
+printf "Specify the filesystem: (i.e. exfat, ext4, ..)\n"
+read FILE
 FILE=$2
 
 FREE=$(parted /dev/$BASE print free | grep 'Free Space' | tail -n1 | awk '{print $3}')
@@ -34,12 +34,12 @@ parted -a optimal /dev/$BASE mkpart primary $START"MB" $END"MB"
 parted /dev/$BASE set 2 hidden on
 
 # Encrypt master key
-#printf "Use GPG Key? (y/n)"
-#read GEN
-#if [ "$GEN" = "y" ];
-#then
-#    dd if=/dev/random bs=512 count=4 | gpg -symmetric > ~/.gnupg/dm-key.gpg
-#fi 
+printf "Use GPG Key? (y/n)"
+read GEN
+if [ "$GEN" = "y" ];
+then
+    dd if=/dev/random bs=512 count=4 | gpg -symmetric > ~/.gnupg/dm-key.gpg
+fi 
 
 if [ ! -f ~/.ssh/dm-key.pub.pem ]
 then
